@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ExercicesEFCore.Models.ToDo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @if (item.IsDone) {
+                        <button type="button" class="btn btn-info"><a asp-action="Edit" asp-route-id="@item.Id" class="link-dark text-decoration-none">Terminée</a></button>
+                }
+                else {
+                        <button type="button" class="btn btn-warning"><a asp-action="Edit" asp-route-id="@item.Id" class="link-dark text-decoration-none">A faire</a></button>
+                }
+            </td>
+            <td>
+                    <button type="button" class="btn btn-danger"><a asp-action="Delete" asp-route-id="@item.Id" class="link-light text-decoration-none">Supprimer</a></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
