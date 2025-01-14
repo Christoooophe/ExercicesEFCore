@@ -9,7 +9,7 @@ namespace ExercicesEFCore.Models
         public string Title { get; set; }
         [DisplayName("Description")]
         public string Description { get; set; }
-        [DisplayName("Actions")]
+        [DisplayName("Terminée")]
         public bool IsDone { get; set; }
     }
 }
