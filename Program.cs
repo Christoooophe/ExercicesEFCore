@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ExercicesEFCore.Data;
+using ExercicesEFCore.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExercicesEFCoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ExercicesEFCoreContext") ?? throw new InvalidOperationException("Connection string 'ExercicesEFCoreContext' not found.")));
@@ -10,6 +11,12 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
