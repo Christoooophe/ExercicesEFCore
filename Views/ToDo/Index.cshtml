@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ExercicesEFCore.Models.ToDo>
-
+﻿@model IPagedList<ExercicesEFCore.Models.ToDo>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 @{
     ViewData["Title"] = "Index";
 }
@@ -13,16 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Titre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDone)
+                Statut
             </th>
             <th></th>
         </tr>
@@ -54,3 +55,7 @@
 }
     </tbody>
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",new { page }))

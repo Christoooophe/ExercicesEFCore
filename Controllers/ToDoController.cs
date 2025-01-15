@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExercicesEFCore.Data;
 using ExercicesEFCore.Models;
+using X.PagedList.Extensions;
 
 namespace ExercicesEFCore.Controllers
 {
@@ -20,9 +21,15 @@ namespace ExercicesEFCore.Controllers
         }
 
         // GET: ToDo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int ?page)
         {
-            return View(await _context.ToDo.ToListAsync());
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var toDos = await _context.ToDo
+                .OrderBy(t => t.Id) // Optionnel : trier les résultats
+                .ToListAsync();
+            return View(toDos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ToDo/Details/5
