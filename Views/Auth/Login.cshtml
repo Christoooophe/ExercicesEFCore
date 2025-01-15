@@ -1,0 +1,20 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<head>
+	<title>Auth</title>
+</head>
+<body>
+	<h2>Auth</h2>
+	<form method="post" action="/Auth/Login">
+		<label for="username">Username</label>
+		<input type="text" placeholder="Nom utilisateur" name="username" required/>
+		<br />
+		<label for="password">Password</label>
+		<input type="password" placeholder="********" required name="password"/>
+		<button type="submit">Envoyer</button>
+	</form>
+	<p style="color: red;">@ViewBag.Message</p>
+</body>

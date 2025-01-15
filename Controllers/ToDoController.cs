@@ -23,6 +23,12 @@ namespace ExercicesEFCore.Controllers
         // GET: ToDo
         public async Task<IActionResult> Index(int ?page)
         {
+            var username = HttpContext.Session.GetString("Username");
+            if (string.IsNullOrEmpty(username))
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            ViewBag.Username = username;
             int pageSize = 10;
             int pageNumber = page ?? 1;
 
