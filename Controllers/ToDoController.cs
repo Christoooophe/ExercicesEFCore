@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ExercicesEFCore.Data;
 using ExercicesEFCore.Models;
 using X.PagedList.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExercicesEFCore.Controllers
 {
@@ -79,6 +80,7 @@ namespace ExercicesEFCore.Controllers
         }
 
         // GET: ToDo/Edit/5
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

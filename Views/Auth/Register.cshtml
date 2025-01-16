@@ -1,0 +1,16 @@
+﻿@model ExercicesEFCore.Models.ViewModel.RegisterViewModel
+
+@{
+}
+
+<form asp-action="Register" method="post">
+	<div>
+		<label for="Email">Username</label>
+		<input type="email" asp-for="UserName" />
+	</div>
+	<div>
+		<label for="Password">Mot de passe</label>
+		<input type="password" asp-for="Password" />
+	</div>
+	<button type="submit">S'inscrire</button>
+</form>

@@ -2,10 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using ExercicesEFCore.Data;
 using ExercicesEFCore.Models;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExercicesEFCoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ExercicesEFCoreContext") ?? throw new InvalidOperationException("Connection string 'ExercicesEFCoreContext' not found.")));
 
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<ExercicesEFCoreContext>()
+    .AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();//Cache
@@ -16,6 +20,11 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 }
 );
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
 
 var app = builder.Build();
 
