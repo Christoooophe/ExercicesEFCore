@@ -65,6 +65,7 @@ namespace ExercicesEFCore.Controllers
 
                 if (result.Succeeded)
                 {
+                    HttpContext.Session.SetString("Username", model.Email);
                     return RedirectToAction("Index", "ToDo");
                 }
 
