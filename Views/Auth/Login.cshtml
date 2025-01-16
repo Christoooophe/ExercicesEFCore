@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model ExercicesEFCore.Models.ViewModel.LoginViewModel
 @{
 	Layout = null;
 }
@@ -9,13 +9,16 @@
 </head>
 <body>
 	<h2>Auth</h2>
-	<form method="post" action="/Auth/Login">
-		<label for="email">Email</label>
-		<input type="text" placeholder="Nom utilisateur" name="email" required asp-for="UserName" />
-		<br />
-		<label for="password">Password</label>
-		<input type="password" placeholder="********" required name="password" asp-for="PasswordHash"/>
-		<button type="submit">Envoyer</button>
+	<form asp-action="Login" method="post">
+		<div>
+			<label for="Email">Email</label>
+			<input type="email" asp-for="Email" />
+		</div>
+		<div>
+			<label for="Password">Mot de passe</label>
+			<input type="password" asp-for="Password" />
+		</div>
+		<button type="submit">Se connecter</button>
 	</form>
 	<p style="color: red;">@ViewBag.Message</p>
 </body>

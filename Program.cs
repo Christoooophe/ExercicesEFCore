@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExercicesEFCoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ExercicesEFCoreContext") ?? throw new InvalidOperationException("Connection string 'ExercicesEFCoreContext' not found.")));
 
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ExercicesEFCoreContext>()
     .AddDefaultTokenProviders();
 // Add services to the container.
@@ -46,7 +46,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession(); //Active la session
 

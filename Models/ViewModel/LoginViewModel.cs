@@ -2,7 +2,7 @@
 
 namespace ExercicesEFCore.Models.ViewModel
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required]
         [EmailAddress]
@@ -12,8 +12,6 @@ namespace ExercicesEFCore.Models.ViewModel
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Les mots de passe ne correspondent pas.")]
-        public string ConfirmPassword { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

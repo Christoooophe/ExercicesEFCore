@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ExercicesEFCore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExercicesEFCore.Data
 {
-    public class ExercicesEFCoreContext : IdentityDbContext<User>
+    public class ExercicesEFCoreContext : IdentityDbContext<IdentityUser>
     {
         public ExercicesEFCoreContext (DbContextOptions<ExercicesEFCoreContext> options)
             : base(options)
