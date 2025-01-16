@@ -1,4 +1,5 @@
-﻿@{
+﻿@model User
+@{
 	Layout = null;
 }
 
@@ -9,11 +10,11 @@
 <body>
 	<h2>Auth</h2>
 	<form method="post" action="/Auth/Login">
-		<label for="username">Username</label>
-		<input type="text" placeholder="Nom utilisateur" name="username" required/>
+		<label for="email">Email</label>
+		<input type="text" placeholder="Nom utilisateur" name="email" required asp-for="UserName" />
 		<br />
 		<label for="password">Password</label>
-		<input type="password" placeholder="********" required name="password"/>
+		<input type="password" placeholder="********" required name="password" asp-for="PasswordHash"/>
 		<button type="submit">Envoyer</button>
 	</form>
 	<p style="color: red;">@ViewBag.Message</p>

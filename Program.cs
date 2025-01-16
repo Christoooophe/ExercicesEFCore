@@ -22,7 +22,7 @@ builder.Services.AddSession(options =>
 );
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Account/Login";
+    options.LoginPath = "/Auth/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 

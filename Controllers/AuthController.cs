@@ -28,7 +28,7 @@ namespace ExercicesEFCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            var user = new User { UserName = model.UserName, PasswordHash = model.Password };
+            var user = new User { UserName = model.Email, PasswordHash = model.Password };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -46,7 +46,7 @@ namespace ExercicesEFCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.PasswordHash))
             {
                 await _signInManager.SignInAsync(user, isPersistent: true);
